@@ -38,9 +38,6 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="titulo" placeholder="Título *" th:value="${post != null ? post.titulo : ''}">
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="autor" placeholder="Autor *" th:value="${post != null ? post.autor : ''}">
-            </div>
 
                 <textarea id="summernote" class="form-control" name="texto" placeholder="Texto *">[[${post != null ? post.texto : ''}]]</textarea>
 

@@ -1,9 +1,15 @@
 package com.blog.codeblog.service.implement;
 
+import com.blog.codeblog.dto.AuthenticationDTO;
 import com.blog.codeblog.model.Post;
+import com.blog.codeblog.model.User;
 import com.blog.codeblog.repository.TechBlogRepository;
+import com.blog.codeblog.repository.UserRepository;
 import com.blog.codeblog.service.TechBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +19,9 @@ public class TechBlogServiceImplement implements TechBlogService {
 
     @Autowired
     TechBlogRepository techBlogRepository;
+
+    @Autowired
+    private UserRepository repository;
 
     @Override
     public List<Post> findAll() {
@@ -27,6 +36,12 @@ public class TechBlogServiceImplement implements TechBlogService {
 
     @Override
     public Post save(Post post) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        User user = repository.findByLogin(username);
+        post.setUser(user);
+
         return techBlogRepository.save(post);
     }
 

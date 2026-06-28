@@ -1,28 +1,47 @@
 # TechBlog
 
-Sistema web desenvolvido utilizando Java, Spring Boot, PostgreSQL, Thymeleaf e Bootstrap.
+Sistema web desenvolvido utilizando Java, Spring Boot, PostgreSQL, Spring Security, JWT, Thymeleaf e Bootstrap.
 
 ## Sobre o projeto
 
-Este projeto foi desenvolvido como prática de estudos em Java e Spring Boot, tendo como inspiração os conceitos aprendidos em cursos da Rocketseat sobre desenvolvimento backend.
+Este projeto foi desenvolvido como prática de estudos em Java e Spring Boot, tendo como base conceitos de cursos da Rocketseat e adaptações próprias.
 
-A partir da ideia inicial, foram realizadas adaptações e implementações próprias para ampliar as funcionalidades da aplicação, transformando o projeto em um blog completo com operações CRUD.
+A aplicação evoluiu de um CRUD simples para um sistema com autenticação e controle de acesso baseado em usuários.
 
 ## Funcionalidades
 
+* Sistema de autenticação com login e registro
+* Autenticação baseada em JWT (JSON Web Token)
+* Controle de sessão stateless
 * Listagem de posts
 * Visualização de detalhes de um post
 * Cadastro de novos posts
 * Edição de posts existentes
 * Exclusão de posts com confirmação
+* Associação de posts a usuários autenticados
 * Validação de campos obrigatórios
-* Dados de demonstração através de DummyData
-* Persistência de dados utilizando PostgreSQL
+* Persistência de dados com PostgreSQL
+
+## Segurança (Spring Security)
+
+* Autenticação via JWT
+* Filtro de segurança customizado (`OncePerRequestFilter`)
+* Usuário autenticado armazenado no `SecurityContext`
+* Proteção de rotas da aplicação
+* Controle de acesso baseado em login
+
+## Modelagem de Dados
+
+* Usuário possui login, senha criptografada (BCrypt) e role (USER/ADMIN)
+* Cada post está associado a um usuário (relacionamento ManyToOne)
+* Posts carregam o autor automaticamente via usuário autenticado
 
 ## Tecnologias Utilizadas
 
-* Java
+* Java 17
 * Spring Boot
+* Spring Security
+* JWT (Auth0)
 * Spring Data JPA
 * PostgreSQL
 * Thymeleaf
@@ -31,37 +50,33 @@ A partir da ideia inicial, foram realizadas adaptações e implementações pró
 
 ## Melhorias Implementadas
 
-Além da estrutura inicial utilizada como referência de estudo, foram implementadas melhorias como:
+* Implementação de autenticação com JWT
+* Criação de filtro de segurança personalizado
+* Associação de posts com usuário logado
+* Ajustes na estrutura dos Controllers
+* Proteção das rotas da aplicação
+* Evolução do CRUD para sistema autenticado
 
-* Redirecionamento automático da página inicial para a listagem de posts.
-* Implementação da funcionalidade de edição de posts.
-* Implementação da funcionalidade de exclusão de posts.
-* Ajustes na estrutura dos Controllers utilizando anotações modernas do Spring.
-* Criação de dados de exemplo para facilitar testes e demonstrações.
-* Melhorias na navegação entre as páginas.
+## 🔮 Próximas melhorias
 
-## 🔮 Próximas melhorias (versão futura)
-
-Este projeto continua em evolução. Na próxima versão, está planejada a implementação de:
-
-* Sistema de autenticação de usuários (login e registro)
-* Controle de acesso (admin e usuários comuns)
-* Associação de posts a usuários
-* Área administrativa para gerenciamento do blog
-* Melhorias na segurança da aplicação
+* Controle de acesso por perfil (ADMIN / USER)
+* Permitir que apenas o dono do post possa editar/excluir
+* Painel administrativo
+* Melhorias na UI/UX do sistema
+* API REST separada do frontend
 
 ## Como Executar
 
-1. Clone o repositório.
-2. Configure um banco PostgreSQL.
-3. Ajuste as configurações do banco no arquivo `application.properties`.
-4. Execute a aplicação Spring Boot.
+1. Clone o repositório
+2. Configure um banco PostgreSQL
+3. Ajuste `application.properties`
+4. Execute a aplicação Spring Boot
 5. Acesse:
 
 http://localhost:8080
 
 ## 👩‍💻 Autora
 
-Julia Agosti
+Júlia Agosti
 
-Projeto desenvolvido para fins de estudo e aprimoramento de conhecimentos em Java, Spring Boot e desenvolvimento web.
+Projeto desenvolvido para fins de estudo e evolução em desenvolvimento backend com Java e Spring Boot.

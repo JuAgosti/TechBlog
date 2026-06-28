@@ -31,9 +31,7 @@
 
                 <p class="card-subtitle mb-2 text-muted"
                    style="font-size: 0.8rem;">
-                    <span th:text="${post.autor}"></span>
-                    -
-                    <span th:text="${post.dataPostagem}"></span>
+                    <span th:text="${post.user != null ? post.user.login : 'Sistema'}"></span>
                 </p>
 
                 <h4 class="card-title"

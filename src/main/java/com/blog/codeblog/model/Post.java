@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "db_post")
+@Getter
+@Setter
 public class Post {
 
     @Id
@@ -19,10 +23,6 @@ public class Post {
     @Column(nullable = false, length = 150)
     private String titulo;
 
-    @NotBlank
-    @Column(nullable = false, length = 100)
-    private String autor;
-
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
     private LocalDate dataPostagem;
@@ -32,43 +32,8 @@ public class Post {
     @Column(nullable = false)
     private String texto;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public LocalDate getDataPostagem() {
-        return dataPostagem;
-    }
-
-    public void setDataPostagem(LocalDate dataPostagem) {
-        this.dataPostagem = dataPostagem;
-    }
-
-    public String getTexto() {
-        return texto;
-    }
-
-    public void setTexto(String texto) {
-        this.texto = texto;
-    }
 }

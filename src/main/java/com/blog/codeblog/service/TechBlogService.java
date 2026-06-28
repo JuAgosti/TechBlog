@@ -1,6 +1,8 @@
 package com.blog.codeblog.service;
 
 import com.blog.codeblog.model.Post;
+import com.blog.codeblog.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

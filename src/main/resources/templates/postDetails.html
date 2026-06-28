@@ -36,7 +36,7 @@
 
           <p class="card-subtitle mb-2 text-muted">
               <i class="material-icons">person_outline</i>
-                <span th:text="${post.autor}"></span>
+                <span th:text="${post.user != null ? post.user.login : 'Sistema'}"></span>
               <br>
               <i class="material-icons">date_range</i>
               <span th:text="${post.dataPostagem}"></span>
